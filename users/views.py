@@ -14,7 +14,7 @@ from django.http import HttpResponse
 
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-import openpyxl
+import openpyxl # type: ignore
 
 
 User = get_user_model()
@@ -23,7 +23,7 @@ User = get_user_model()
 def admin_required(login_url=None):
     return user_passes_test(lambda usuario:usuario.is_superuser, login_url=login_url)
 
-@login_required # este metodo necesita que sea un usuario autenticado pero no necesariamente un Admin
+## @login_required # este metodo necesita que sea un usuario autenticado pero no necesariamente un Admin
 def user_list(request):
     users = User.objects.all()
     paginator = Paginator(users, 5) # Mostrar 5 usuarios por página
