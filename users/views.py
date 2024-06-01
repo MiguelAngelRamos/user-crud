@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 # Lo necesario para "auth"
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -33,6 +33,19 @@ def user_list(request):
     
 
 # add_user require este decorador @admin_required(login_url='/login/')
+
+def add_user(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('user_list')
+        else:
+            print('Form is not valid: ', form.errors)
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'users/add_user.html', {'form': form })   
+            
 # export_users_to_excel require este decorador @admin_required(login_url='/login/')
 
 

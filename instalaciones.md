@@ -4,4 +4,5 @@
   pip install django
   pip install django-filter
   pip install openpyxl
+  pip install django-widget-tweaks
 ```
