@@ -10,7 +10,7 @@
                   </div>
                   <div class="col-sm-7">
                       <a href="{% url 'add_user' %}" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
-                      <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>						
+                      <a href="{% url 'export_users_to_excel'%}" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>						
                   </div>
               </div>
           </div>
@@ -32,7 +32,7 @@
                       <td>{{forloop.counter}}</td>
                       <td>
                         {% if user.profile_image %}
-                        <img src="{{ user.profile_image.url}}" class="avatar" alt="Avatar">
+                        <img src="{{ user.profile_image.url}}" class="avatar" alt="Avatar" width=35>
                         {% endif %}
                         <a href="#"> {{ user.username }}</a>
                       </td>
@@ -41,7 +41,7 @@
                       <td><span class="status text-success">&bull;</span> Active</td>
                       <td>
                           <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                          <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                          <a href="{% url 'delete_user' user.id %}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                       </td>
                   </tr>
                 {% endfor %}
